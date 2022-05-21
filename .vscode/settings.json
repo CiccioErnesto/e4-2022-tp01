@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "ticks_systick.h": "c"
+        "ticks_systick.h": "c",
+        "unity_config.C": "cpp"
     }
 }
