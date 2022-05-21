@@ -22,6 +22,10 @@
 defun copiaMemoria
     // Implementación aquí
     // R0: origen, R1: destino, R2: longitud
+    cbz R2, 0f
+    ldrb R3,[R0] //Carga el valor de 8 bits de R0 en R3 y el resto lo rellena con 0
+    strb R3,[R1] //Guarda el valor de 8 bits de R3 en R1 y el resto lo rellena con 0
+0:
     bx lr
 endfun copiaMemoria
 
