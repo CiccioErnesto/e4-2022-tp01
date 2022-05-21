@@ -56,14 +56,52 @@ endfun copiaCadena
 defun mayusculaEnLugar
     // Implementación aquí
     // R0: cadena, R1: longitudMaxima
-    ldr R3,[R0]
-    ldr R2,[R1]
-    cmp 
+    cbz R1, 0f //Cadena Nula
+   
+    //Utilizo los numeros 97 y 122 ya que entre esos valores en codigo ascii estan comprendidas las minusculas
+1:
+
+    ldrb R3,[R0],#1
+    cmp R3,#97 
+    bmi 2f
+    cmp R3,#122
+    bpl 2f
+    subs R3,#32 //resto 32
+    strb R3,[R0,#(-1)]
+
+2: // si no es letra analizo el siguiente byte
+
+    subs R1,#1
+    bne 1b
+
+0:  
+
     bx lr
 endfun mayusculaEnLugar
 
 defun minusculaEnLugar
     // Implementación aquí
     // R0: cadena, R1: longitudMaxima
+
+    cbz R1, 0f //Cadena Nula
+    
+    //Utilizo los numeros 65 y 90 ya que entre esos valores en codigo ascii estan comprendidas las mayusculas
+1:
+
+    ldrb R3,[R0],#1
+    cmp R3,#65 
+    bmi 2f
+    cmp R3,#90
+    bpl 2f
+    add R3,#32 //Sumo 32
+    strb R3,[R0,#(-1)]
+
+2: // si no es letra analizo el siguiente byte
+
+    subs R1,#1
+    bne 1b
+
+0:  
+
     bx lr
 endfun minusculaEnLugar
